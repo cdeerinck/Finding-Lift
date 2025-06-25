@@ -16,11 +16,10 @@ var desiredBank: Double = 0.0
 var bankRate: Double = 1.0
 var cummulativeLift: Double = 0.0
 var cummulativeSink: Double = 0.0
-var northUp: Bool = false
-var windSpeed: Double = 5.0
-var windDirection: Double = 90.0
-var trail: [Track] = []
-
+var windSpeed: Double = 0.0
+var windDirection: Double = 0.0
+var trail: [Track] = resetTrack()
+var speed: Double = 0.1
 
 @main
 struct Finding_LiftApp: App {

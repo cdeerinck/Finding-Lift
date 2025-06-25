@@ -19,16 +19,18 @@ func addTrack(_ track: inout [Track]) {
     
     //Roll to the desired bank angle
     if gliderBank != desiredBank {
-        let direction = (desiredBank - gliderBank).binade
+        let sign = (desiredBank - gliderBank).sign
+        let direction:Double
+        if sign == .plus { direction = 1 } else {direction = -1 }
         gliderBank += direction * bankRate
-        let newDirection = (desiredBank - gliderBank).binade
-        if newDirection != direction {
+        let newSign = (desiredBank - gliderBank).sign
+        if newSign != sign {
             gliderBank = desiredBank
         }
     }
     
-    let rateOfTurn = (1091.0 * tan(gliderBank)) / gliderSpeed // Got this from here: https://airplaneacademy.com/radius-of-standard-and-non-standard-rate-turns/
-    gliderHeading += rateOfTurn
+    let rateOfTurn = (1091.0 * tan(Angle(degrees:gliderBank).radians)) / gliderSpeed // Got this from here: https://airplaneacademy.com/radius-of-standard-and-non-standard-rate-turns/
+    gliderHeading += speed * rateOfTurn
     gliderHeading = gliderHeading.truncatingRemainder(dividingBy:360.0)
     
     track.append(Track(x: gliderX, y: gliderY, lift: lift))
