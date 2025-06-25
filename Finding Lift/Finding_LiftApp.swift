@@ -20,6 +20,7 @@ var windSpeed: Double = 0.0
 var windDirection: Double = 0.0
 var trail: [Track] = resetTrack()
 var speed: Double = 0.1
+var mode: Mode = .thermal
 
 @main
 struct Finding_LiftApp: App {
