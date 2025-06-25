@@ -15,7 +15,8 @@ func addTrack(_ track: inout [Track]) {
     
     gliderX = last.x + cos(Angle(degrees: gliderHeading).radians)*gliderSpeed + cos(Angle(degrees: windDirection).radians)*windSpeed
     gliderY = last.y + sin(Angle(degrees: gliderHeading).radians)*gliderSpeed + sin(Angle(degrees: windDirection).radians)*windSpeed
-    let lift = UIColor(.black) // Get the actual lift from the lift map
+    let lift = UIColor(red: .random(in: 0..<1), green: .random(in: 0..<1), blue:  .random(in: 0..<1), alpha: 1.0)
+    //UIColor(.black) // Get the actual lift from the lift map
     
     //Roll to the desired bank angle
     if gliderBank != desiredBank {
