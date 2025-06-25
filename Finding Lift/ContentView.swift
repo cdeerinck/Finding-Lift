@@ -27,7 +27,6 @@ struct ContentView: View {
                     Button  {
                         northUp.toggle()
                         counter += 1
-                        refreshSubView.toggle()
                     } label: {
                         if northUp {
                             Image(systemName: "location.fill")
@@ -42,6 +41,7 @@ struct ContentView: View {
                         .onReceive(timer) { _ in
                             addTrack(&trail)
                             counter += 1
+                            refreshSubView.toggle()
                         }
                         .onAppear() {
                             addTrack(&trail)
