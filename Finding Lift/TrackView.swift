@@ -14,26 +14,27 @@ struct TrackView: View {
     var body: some View {
         Image(uiImage: drawTrail())
             .resizable()
-            //.frame(width: 300, height: 200)
+            .aspectRatio(CGFloat(1), contentMode: .fill)
+            .frame(width: 1000, height: 1000)
             .border(Color.blue)
     }
     
     func drawTrail() -> UIImage {
         
         //create context
-        UIGraphicsBeginImageContext(CGSize(width: 9000, height: 9000))
-        let midpoint = CGPoint(x: 4500, y: 4500)
+        UIGraphicsBeginImageContext(CGSize(width: 3000, height: 3000))
+        let midpoint = CGPoint(x: 1500, y: 1500)
 
         //setup initial color
         let context = UIGraphicsGetCurrentContext()!
         context.setLineWidth(20.0)
         
-        //draw the glider
-        if let image = UIImage(named: "Glider")?
-            .cgImage {
-            let rect = CGRect(x: midpoint.x - (Double(image.width) / 2.0), y: midpoint.y - (Double(image.height) / 2.0), width: Double(image.width), height: Double(image.height))
-            context.draw(image, in: rect)
-        }
+//        //draw the glider
+//        if let image = UIImage(named: "Glider")?
+//            .cgImage {
+//            let rect = CGRect(x: midpoint.x - (Double(image.width) / 2.0), y: midpoint.y - (Double(image.height) / 2.0), width: Double(image.width), height: Double(image.height))
+//            context.draw(image, in: rect)
+//        }
 
         //iterate over trail drawing line from previous postion to the new point
         var last:CGPoint = CGPoint(x:trail.first!.x - gliderX + midpoint.x, y:trail.first!.y - gliderY + midpoint.y)

@@ -13,8 +13,8 @@ import SwiftUI
 func addTrack(_ track: inout [Track]) {
     let last = track.last!  // The Track array should never be passed in completely empty.
     
-    gliderX = last.x + cos(Angle(degrees: gliderHeading).radians)*gliderSpeed + cos(Angle(degrees: windDirection).radians)*windSpeed
-    gliderY = last.y + sin(Angle(degrees: gliderHeading).radians)*gliderSpeed + sin(Angle(degrees: windDirection).radians)*windSpeed
+    gliderX = last.x + (cos(Angle(degrees: 90.0 - gliderHeading).radians)*gliderSpeed + cos(Angle(degrees: 90.0 - windDirection).radians)*windSpeed) * scaleFactor
+    gliderY = last.y - (sin(Angle(degrees: 90.0 - gliderHeading).radians)*gliderSpeed + sin(Angle(degrees: 90.0 - windDirection).radians)*windSpeed) * scaleFactor
     let lift = UIColor(red: .random(in: 0..<1), green: .random(in: 0..<1), blue:  .random(in: 0..<1), alpha: 1.0)
     //UIColor(.black) // Get the actual lift from the lift map
     

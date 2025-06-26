@@ -13,14 +13,14 @@ struct ContentView: View {
     @State private var northUp = false
     @State private var refreshSubView: Bool = false
     @State var counter: Int = 0
-    
+    var glider:UIImage = UIImage(named: "Glider.png")!
     
     let timer = Timer.publish(every: speed, on: .main, in: .common).autoconnect()
 
     var body: some View {
         ZStack {
             TrackView()
-                .rotationEffect(Angle(degrees: northUp ? gliderHeading : 0.0))
+                .rotationEffect(Angle(degrees: northUp ? 0.0 : -gliderHeading))
                 .id(refreshSubView)
             VStack{
                 HStack {
@@ -90,7 +90,7 @@ struct ContentView: View {
                     //Text("\(gliderHeading)")
                     Text("\(Int(windSpeed))")
                     Image(systemName: windSpeed >= 1.0 ? "arrow.up": "circle.dotted")
-                            .rotationEffect(Angle(degrees: northUp ? windDirection - gliderHeading : windDirection))
+                        .rotationEffect(Angle(degrees: northUp ? windDirection : windDirection - gliderHeading))
                 }
                 
                 Spacer()
@@ -116,7 +116,10 @@ struct ContentView: View {
                         .tint(desiredBank == 60 ? Color.accentColor : Color.black)
                 }
             }
+            Image(uiImage: glider)
+                .rotationEffect(Angle(degrees: northUp ? gliderHeading : 0.0))
         }
+
     }
 }
 
